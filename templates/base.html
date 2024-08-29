@@ -1,0 +1,125 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{% endblock %}</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+        integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+    <style>
+        .no_scroll {
+            overflow: hidden;
+        }
+
+        /*.no_scroll::-webkit-scrollbar {
+            display: none;
+        }*/
+    </style>
+</head>
+
+<body class="w-full h-full bg-cover bg-top">
+
+    {% load static %}
+    <nav
+        class="backdrop-blur-sm fixed flex justify-between items-center w-full top-0 start-0 p-4 px-10 z-10  transition-all duration-500 ease-in-out ">
+        <div id="left" class="flex items-center justify-center">
+            <img src="{% static 'images/logo.png' %}" alt="logo" class="h-8">
+            <h1 class="p-2 text-white text-lg md:text-xl">Event Management</h1>
+        </div>
+        <div id="right" class="md:flex gap-4 items-center justify-end hidden">
+            <button onclick="window.location.href = '/'"
+                class="bg-[#0072FF] text-white py-2 px-6 rounded hover:bg-[#0066E3] font-semibold text-sm">Home</button>
+            <button
+                class="openMenu bg-[#0072FF] text-white py-2 px-6 rounded hover:bg-[#0066E3] font-semibold text-sm ">Actions</button>
+            {% if user.is_authenticated %}
+            <button onclick="window.location.href = '/accounts/logout/'"
+                class="bg-[#0072FF] text-white py-2 px-6 rounded hover:bg-[#0066E3] font-semibold text-sm">Log
+                Out</button>
+            {% else %}
+            <button onclick="window.location.href = '/accounts/login/'"
+                class="bg-[#0072FF] text-white py-2 px-6 rounded hover:bg-[#0066E3] font-semibold text-sm">Sign
+                In</button>
+            {% endif %}
+        </div>
+        <i class="openMenu fa-solid fa-bars text-white cursor-pointer md:hidden text-center text-xl"></i>
+
+    </nav>
+    <div id="actions"
+        class="w-full h-screen flex flex-col items-start backdrop-blur-sm bg-black  fixed bg-top top-0  bg-cover z-20 transition-all duration-700 ease-in-out">
+        <div class="px-10 py-4 border-b border-gray-700 w-full flex justify-between items-center">
+
+            <button class="text-white rounded text-2xl">Menu</button>
+            <i id="closeMenu" class="fa-solid fa-xmark text-white text-xl cursor-pointer"></i>
+        </div>
+        <div class="px-10 py-4 w-full flex flex-col items-start gap-2">
+            <button onclick="window.location.href = '/'"
+                class="text-gray-500 text-xl hover:text-gray-200 md:hidden">Home</button>
+            <button onclick="window.location.href = '/create/'" class="text-gray-500 text-xl hover:text-gray-200">Add
+                Event</button>
+            <button onclick="window.location.href = '/view/'" class="text-gray-500 text-xl hover:text-gray-200">My
+                Events</button>
+            <button onclick="window.location.href = '/allevents/'" class="text-gray-500 text-xl hover:text-gray-200">All
+                Events</button>
+            {% if user.is_authenticated %}
+            <button onclick="window.location.href = '/accounts/logout/'"
+                class="text-gray-500 text-xl hover:text-gray-200 md:hidden">Log Out</button>
+            {% else %}
+            <button onclick="window.location.href = '/accounts/login/'"
+                class="text-gray-500 text-xl hover:text-gray-200 md:hidden">Sign In</button>
+            {% endif %}
+        </div>
+
+    </div>
+
+    <div class="mt-20">
+        {% block content %}
+        {% endblock %}
+    </div>
+    {% block footer %}
+    <footer>
+        <div id="topFooter"
+            class="bg-[#111111] flex flex-col py-8 md:py-1 md:flex-row md:justify-center md:items-center w-full gap-1">
+
+
+            <div class="md:w-[350px] w-full md:h-[200px] pt-8 px-4 text-white  md:border-gray-700">
+                <h1 class="text-lg">Connect with us on social media</h1>
+                <div id="socials">
+                    <i class="fa-brands fa-facebook  text-white px-1"></i>
+                    <i class="fa-brands fa-twitter  text-white px-1"></i>
+                    <i class="fa-brands fa-instagram  text-white px-1"></i>
+                    <i class="fa-brands fa-linkedin  text-white px-1"></i>
+                </div>
+            </div>
+            <div class="md:w-[350px] w-full md:h-[200px] text-white pt-8 px-4  md:border-gray-700">
+                <h1 class="text-lg">Support</h1>
+                <ul>
+                    <li><a href="" class="text-sm text-gray-500 hover:text-gray-200">Help</a></li>
+                    <li><a href="" class="text-sm text-gray-500 hover:text-gray-200">Contact</a></li>
+                    <li><a href="" class="text-sm text-gray-500 hover:text-gray-200">About Us</a></li>
+                    <li><a href="" class="text-sm text-gray-500 hover:text-gray-200">Terms and Conditions</a></li>
+                </ul>
+            </div>
+            <div class="md:w-[350px] w-full md:h-[200px]  text-white pt-8 pl-4">
+                <h1 class="text-lg">Contect</h1>
+                <ul>
+                    <li><a href="tel:+919876543210" class="text-sm text-gray-500 hover:text-blue-200">+91 9876543210</a>
+                    </li>
+                    <li><a href="mailto:O7kS0@example.com"
+                            class="text-sm text-gray-500 hover:text-blue-200">O7kS0@example.com</a></li>
+                </ul>
+            </div>
+        </div>
+        <div>
+            <h1 class="text-sm py-8 px-4 text-gray-500 text-center">© 2024 Event Management. All rights reserved.</h1>
+        </div>
+    </footer>
+    {% endblock %}
+</body>
+<script src="{% static 'js/base.js' %}"></script>
+
+</html>

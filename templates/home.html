@@ -1,0 +1,101 @@
+{% extends 'base.html' %}
+{% block title %}Home{% endblock %}
+
+{% block content %}
+<main class="w-full p-5">
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/home.css' %}">
+    <div class="w-full h-[60vh] rounded p-8 flex flex-col items-center justify-center">
+        <h1 class="text-center md:text-5xl text-3xl font-bold intro py-4">Welcome to Event Management System</h1>
+        <button onclick="document.getElementById('content').scrollIntoView({behavior: 'smooth'})"
+            class="bg-[#0072FF] text-white py-2 px-6 rounded hover:bg-[#0066E3] font-semibold text-sm">Scoll
+            Down</button>
+    </div>
+    <div id="content">
+        <div class="w-full h-screen rounded p-8 flex flex-col items-center justify-center gap-6">
+            <h1 class="intro text-center text-xl  md:text-3xl font-bold text-white">Let's start
+                planning your
+                perfect event—effortlessly and efficiently.</h1>
+            {% if user.is_authenticated %}
+            <button class="bg-[#0072FF] text-white py-2 px-6 rounded hover:bg-[#0066E3] font-semibold text-sm"
+                onclick="document.getElementById('cards').scrollIntoView({behavior: 'smooth'})">In Details</button>
+            {% else %}
+            <button class="bg-[#0072FF] text-white py-2 px-6 rounded hover:bg-[#0066E3] font-semibold text-sm"
+                onclick="window.location.href = '/accounts/login'">Get Started</button>
+            {% endif %}
+        </div>
+        <div id="cards" class="w-full h-full flex flex-wrap items-center justify-center gap-4 p-4">
+
+            <div id="card" class="w-80 bg-[#191919] p-4 rounded flex flex-col items-start gap-4">
+                <img class="w-[300px] h-[190px] object-cover object-center"
+                    src="https://images.unsplash.com/photo-1556740714-a8395b3bf30f?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                    alt="img">
+                <h1 class="text-white text-lg font-bold">Register Event</h1>
+                <p class="text-gray-400 text-sm">Create an event and post it for others to see. Users can easily
+                    register for events, receive notifications, and view event details including date, time, location,
+                    and more. Simplify event management and boost participation with our intuitive platform.</p>
+                <button onclick="window.location.href = '/create/'"
+                    class="bg-[#0072FF] text-white py-2 px-6 rounded hover:bg-[#0066E3] font-semibold text-sm w-full">Create</button>
+            </div>
+
+            <div id="card" class="w-80 bg-[#191919] p-4 rounded flex flex-col items-start gap-4">
+                <img class="w-full"
+                    src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                    alt="img">
+                <h1 class="text-white text-lg font-bold">View Your Event Details</h1>
+                <p class="text-gray-400 text-sm">Get comprehensive insights into your event. View the number of users
+                    registered, manage attendee lists, and access detailed analytics. Ensure your event's success by
+                    keeping track of all essential details and user interactions through our intuitive platform.</p>
+                <button onclick="window.location.href = '/view/'"
+                    class="bg-[#0072FF] text-white py-2 px-6 rounded hover:bg-[#0066E3] font-semibold text-sm w-full">View</button>
+            </div>
+
+
+            <div id="card" class="w-80 md:w-[21rem] bg-[#191919] p-4 rounded flex flex-col items-start gap-4">
+                <img class="w-[300px] h-[190px] object-cover object-center"
+                    src="https://plus.unsplash.com/premium_photo-1661387431329-851c804f8ea2?q=80&w=1985&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                    alt="img">
+                <h1 class="text-white text-lg font-bold">View All Events and Register</h1>
+                <p class="text-gray-400 text-sm">Explore a wide variety of events posted by others. Easily browse
+                    through event details, including date, time, and location. Register for events that interest you and
+                    receive timely notifications. Our platform makes it simple to stay informed and get involved.</p>
+                <button onclick="window.location.href = '/allevents/'"
+                    class="bg-[#0072FF] text-white py-2 px-6 rounded hover:bg-[#0066E3] font-semibold text-sm w-full">Explore
+                    Events</button>
+            </div>
+        </div>
+        <div id="statictics" class="w-full flex flex-wrap items-center justify-center gap-4 p-2">
+            <div
+                class=" sm:bg-gradient-to-tr from-[#6060604f] to-[#0073ff31] min-w-full sm:min-w-28 md:min-w-44  backdrop-blur-sm rounded flex flex-col items-center p-6">
+                <i class="fa-regular fa-eye text-3xl text-gray-400 p-2 text-center w-full"></i>
+                <h1 class="text-xl md:text-3xl font-bold text-gray-400 px-2 w-full text-center">{{counts.views}}</h1>
+                <h1 class="text-sm text-center text-gray-500 border-b border-gray-500 px-2 py-1  w-full">Total Views
+                </h1>
+            </div>
+            <div
+                class=" sm:bg-gradient-to-tr from-[#6060604f] to-[#0073ff31] min-w-full sm:min-w-28  md:min-w-44  backdrop-blur-sm rounded flex flex-col items-center p-6">
+                <i class="fa-solid fa-earth-asia text-3xl text-gray-400 p-2 text-center w-full"></i>
+                <h1 class="text-xl md:text-3xl font-bold text-gray-400 px-2 w-full text-center">{{counts.events}}</h1>
+                <h1 class="text-sm text-center text-gray-500 border-b border-gray-500 px-2 py-1  w-full">Total Events
+                </h1>
+            </div>
+            <div
+                class=" sm:bg-gradient-to-tr from-[#6060604f] to-[#0073ff31] min-w-full sm:min-w-28 md:min-w-44  backdrop-blur-sm rounded flex flex-col items-center p-6">
+                <i class="fa-solid fa-users text-3xl text-gray-400 p-2 text-center w-full"></i>
+                <h1 class="text-xl md:text-3xl font-bold text-gray-400 px-2 w-full text-center">{{counts.attendees}}
+                </h1>
+                <h1 class="text-sm text-center text-gray-500 border-b border-gray-500 px-2 py-1  w-full">Attendees
+                </h1>
+            </div>
+            <div
+                class=" sm:bg-gradient-to-tr from-[#6060604f] to-[#0073ff31] min-w-full sm:min-w-28 md:min-w-44  backdrop-blur-sm rounded flex flex-col items-center p-6">
+                <i class="fa-solid fa-user text-3xl text-gray-400 p-2 text-center w-full"></i>
+                <h1 class="text-xl md:text-3xl font-bold text-gray-400 px-2 w-full text-center">{{counts.users}}</h1>
+                <h1 class="text-sm text-center text-gray-500 border-b border-gray-500 px-2 py-1  w-full">Total Users
+                </h1>
+            </div>
+
+        </div>
+    </div>
+</main>
+{% endblock %}

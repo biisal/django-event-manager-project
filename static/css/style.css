@@ -1,0 +1,73 @@
+@import url('https://fonts.googleapis.com/css2?family=Mandali&family=Mitr:wght@200;300;400;500;600;700&family=Outfit:wght@100..900&display=swap');
+
+@font-face {
+    font-family: 'neueLight';
+    src: url(../fonts/NeueMachina-Light.otf) format('opentype');
+}
+
+@font-face {
+    font-family: 'neueRegular';
+    src: url(../fonts/NeueMachina-Regular.otf) format('opentype');
+}
+
+@font-face {
+    font-family: 'helvatica';
+    src: url(../fonts/HelveticaNowDisplay-Light.ttf);
+}
+
+
+
+* {
+    font-family: neueLight;
+    transition: all 0.3s ease;
+
+}
+
+footer li a {
+    font-family: helvatica;
+}
+
+
+body {
+    background: url(../images/bg.svg)
+}
+
+body::-webkit-scrollbar {
+    display: none;
+}
+
+div form h1,
+p,
+a {
+    font-family: helvatica;
+}
+
+.outfit {
+    font-family: Outfit;
+}
+
+.view-description {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+
+#slide-up-message {
+    bottom: -100px;
+    animation: slide-up 1s ease-in-out forwards;
+}
+
+#buttons button,
+.register-button {
+    font-family: Outfit;
+}
+
+
+@keyframes slide-up {
+    from {
+        bottom: -100px;
+    }
+
+    to {
+        bottom: 16px;
+    }
+}

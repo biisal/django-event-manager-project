@@ -1,0 +1,33 @@
+.intro {
+    background: -webkit-linear-gradient(16deg, #ed4f4f, #55dff7, #ff4c4c);
+    background-clip: text;
+    color: transparent;
+    /* text-shadow: 0px 3px 30px rgba(46, 42, 42, 0.667); */
+    background-size: 200%;
+    animation: text-an 5s infinite linear reverse;
+
+}
+
+
+
+@keyframes text-an {
+    from {
+        background-position: 0 0;
+        /* opacity: 0; */
+    }
+
+    50% {
+        background-position: 100% 0;
+        /* opacity: 1; */
+    }
+
+    to {
+        background-position: 200% 0;
+    }
+
+
+}
+
+k {
+    color: #57575734;
+}

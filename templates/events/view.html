@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block title %}Events{% endblock %}
+
+{% block content %}
+<main class="flex flex-col items-center w-full gap-6 p-6">
+
+    {% for event in userEvent %}
+
+    <div
+        class="outfit bg-gradient-to-tr from-[#2d2d2d2f] to-[#57575734] p-6 rounded-lg shadow-lg w-full  flex flex-col items-start">
+
+        <h1 class="outfit text-xl  md:text-3xl  text-gray-300 capitalize">{{ event.name }}</h1>
+        <p class="outfit text-gray-400 text-sm">{{ event.date }}</p>
+        <div class="outfit rounded w-full my-4 text-gray-300">
+            {{ event.description.html|safe}}
+        </div>
+        <p class="outfit text-gray-500 text-sm"><span class="text-gray-400">Location:</span> {{event.location}}
+        <p class="outfit text-gray-500 text-sm"><span class="text-gray-400">Event Date:</span>
+            {{event.event_date}}
+        </p>
+        <div class="flex gap-4 mt-4 flex-col sm:flex-row w-full" id="buttons">
+
+            <button
+                class="bg-blue-600 text-white py-2 px-6 rounded hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-opacity-50"
+                onclick="window.location.href = '/edit/{{ event.id }}/'">Edit Event</button>
+            <button
+                class="bg-red-600 text-white py-2 px-6 rounded hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-600 focus:ring-opacity-50"
+                onclick="window.location.href = '/delete/{{ event.id }}/'">Delete Event</button>
+            <button class="bg-gray-600 text-white py-2 px-6 rounded hover:bg-gray-700"
+                onclick="window.location.href = '/view/details/{{ event.id }}/'">View Details</button>
+        </div>
+    </div>
+    {% endfor %}
+
+    <div class="p-8 rounded shadow-md w-full flex flex-col justify-center items-center space-y-4">
+        <h1 class="text-gray-400 text-center">No More Events Available</h1>
+        <div id="buttons" class="flex gap-4 flex-wrap justify-center items-center w-fit">
+            <button class="w-full md:w-fit bg-blue-600 text-white py-2 px-6 rounded hover:bg-blue-700"
+                onclick="window.location.href = '/create/'">Add Event</button>
+            <button onclick="window.location.href = '/'"
+                class="w-full md:w-fit bg-blue-600 text-white py-2 px-6 rounded hover:bg-blue-700"><i
+                    class="fa-solid fa-arrow-left">
+                </i> Back</button>
+        </div>
+    </div>
+</main>
+{% endblock %}

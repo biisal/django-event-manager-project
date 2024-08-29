@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block title %}Create Event{% endblock %}
+{% block content %}
+<main class="flex flex-col items-center w-full gap-6 p-6 overflow-hidden">
+    {{form.media}}
+    <div class="bg-[#2d2d2d2f] p-8 rounded shadow-md w-full text-white">
+        <h2 class="text-2xl font-bold mb-4 text-white">Create Event</h2>
+
+        <form action="" method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit"
+                class="mt-4 bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600">Create</button>
+            <button class="mt-4 bg-red-700 text-white py-2 px-4 rounded hover:bg-blue-600"
+                onclick="window.history.back()">Back</button>
+        </form>
+    </div>
+    {% if messages %}
+    {% for message in messages %}
+    <div id="slide-up-message" class="fixed w-full flex justify-center">
+        {% if message.tags == 'success' %}
+        <p id="message" class="text-sm p-2 px-10 bg-green-500 font-bold text-black rounded  text-center">
+            {{message|safe}}
+
+        </p>
+        {% else %}
+        <p id="message" class="text-sm p-2 px-10 bg-[#ff000063] font-bold text-white rounded text-center">
+            {{message|safe}}
+        </p>
+        {% endif %}
+    </div>
+    {% endfor %}
+    {% endif %}
+</main>
+{% endblock %}
+{% block footer %}{% endblock %}

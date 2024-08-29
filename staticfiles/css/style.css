@@ -1,0 +1,32 @@
+@font-face {
+    font-family: 'neum';
+    src: url(../fonts/NeueMachina-Light.otf) format('opentype');
+}
+
+* {
+    font-family: neum;
+}
+
+body {
+    background: url(../images/bg.svg)
+}
+
+body::-webkit-scrollbar {
+    width: 0.3em;
+    background-color: #140202;
+}
+
+body::-webkit-scrollbar-thumb {
+    border-radius: 35px;
+    background: linear-gradient(to top, #024393, #0072FF, #01418f)
+}
+
+.no_scroll::-webkit-scrollbar {
+    display: none;
+}
+
+.intro {
+    color: wheat;
+    /* animation: text-an 1s ease infinite alternate; */
+
+}
